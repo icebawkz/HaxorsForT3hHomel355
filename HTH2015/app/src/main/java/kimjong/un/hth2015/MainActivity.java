@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WebApp.class);
-                intent.putExtra("website", "http://www.reddit.com");
+                intent.putExtra("website", "http://pranavbheda.github.io/hth2015.html");
                 startActivity(intent);
             }
         });

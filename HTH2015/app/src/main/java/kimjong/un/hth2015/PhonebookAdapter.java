@@ -17,7 +17,10 @@ public class PhonebookAdapter extends BaseAdapter implements View.OnClickListene
 
     private List<Phonebook> listPhonebook;
 
-    public PhonebookAdapter(Context context, List<Phonebook>, listPhonebook)
+    public PhonebookAdapter(Context context, List<Phonebook> listPhonebook){
+        this.context = context;
+        this.listPhonebook = listPhonebook;
+    }
 
 
     @Override

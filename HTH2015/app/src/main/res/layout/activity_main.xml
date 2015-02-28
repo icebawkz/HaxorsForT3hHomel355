@@ -30,7 +30,7 @@
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="Top           Right"
+        android:text="Tutorial Video"
         android:id="@+id/button2"
         android:background="@drawable/bottom_right_button"
         android:layout_alignTop="@+id/button3"
