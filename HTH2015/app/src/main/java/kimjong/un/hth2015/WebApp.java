@@ -34,7 +34,7 @@ public class WebApp extends ActionBarActivity{
         Log.d("Pulled URL is", extra);
 
         myView = new WebView(this);
-        //myView.getSettings().setJavaScriptEnabled(true);
+        myView.getSettings().setJavaScriptEnabled(true);
 
         myView.loadUrl(extra);
         setContentView(myView);

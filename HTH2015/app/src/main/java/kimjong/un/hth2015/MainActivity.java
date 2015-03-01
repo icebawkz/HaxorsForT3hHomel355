@@ -36,16 +36,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
-
-        // sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
-
-        // if (sharedpreferences.contains("Phone_No"))
-        //     phone_number = sharedpreferences.getString("Phone_No", "");
-
-
-        // if (sharedpreferences.contains("FirstLaunch"))
-        //     first_launch = sharedpreferences.getBoolean("FirstLaunch", first_launch);
 
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
