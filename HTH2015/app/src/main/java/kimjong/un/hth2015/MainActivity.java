@@ -17,12 +17,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+
 public class MainActivity extends ActionBarActivity {
 
     SmsManager smsManager = SmsManager.getDefault();
     SharedPreferences sharedpreferences;
-    private boolean first_launch = true;
-    String phone_number;
+    private boolean first_launch;
 
 
     @Override
@@ -30,14 +30,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
-        sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(HITH_PREFERENCES, Context.MODE_PRIVATE);
 
-        if (sharedpreferences.contains(Phone_No))
-            phone_number = sharedpreferences.getString(Phone_No, "");
 
-        if (sharedpreferences.contains(FirstLaunch))
-            first_launch = false;
-
+        if (sharedpreferences.contains)
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +117,7 @@ public class MainActivity extends ActionBarActivity {
     private void firstLaunch(){
 
         Editor editor = sharedpreferences.edit();
+
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setMessage("Enter your phone number");
@@ -129,13 +126,8 @@ public class MainActivity extends ActionBarActivity {
         phone.setHint("10 Digit Phone Number");
         alert.setView(phone);
         alert.setPositiveButton("Ok", null);
-        phone_number = phone.getText().toString();
         alert.setNegativeButton("Cancel", null);
         alert.show();
-
-        editor.putString(Phone_No, phoneNumber);
-        editor.putBoolean(FirstLaunch, false);
-        editor.commit();
 
     }
 }
