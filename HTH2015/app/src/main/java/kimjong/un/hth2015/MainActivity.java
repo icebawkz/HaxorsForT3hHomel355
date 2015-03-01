@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -88,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 long bytes_usage = TrafficStats.getTotalRxBytes();
-                Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage/100000 + "MB", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage / 100000 + "MB", Toast.LENGTH_LONG).show();
             }
         });
     }
