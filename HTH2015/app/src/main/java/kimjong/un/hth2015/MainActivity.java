@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
     // private boolean first_launch = true;
     // private String phone_number = null;
     double total_bytes_month= 0;
-    int counter_days = 30;
+    int counter_days = 29;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +80,16 @@ public class MainActivity extends ActionBarActivity {
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                total_bytes_month = 600000;
                 long bytes_usage = TrafficStats.getTotalRxBytes();
                 total_bytes_month += bytes_usage;
                 counter_days++;
                 if (counter_days == 30){
-                    Toast.makeText(getApplicationContext(), "Data Usage over the last 30 days: " + total_bytes_month / 100000 + "MB", Toast.LENGTH_LONG).show();
-                }
-                Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage/100000 + "MB", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Data Usage over the last 30 checks: " + total_bytes_month / 100000 + "MB", Toast.LENGTH_LONG).show();
+                    Log.v("data button", "is " + total_bytes_month/100000);
+                    counter_days = 0;
+                }else
+                    Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage/100000 + "MB", Toast.LENGTH_LONG).show();
             }
         });
     }
