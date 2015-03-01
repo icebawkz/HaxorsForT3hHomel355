@@ -81,7 +81,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void sendText(){
         long bytes_usage = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
-        smsManager.sendTextMessage(getMy10DigitPhoneNumber(), null,
+        Log.v("sendText()", getTotalTxBytes + " " + getTotalRxBytes);
+        smsManager.sendTextMessage("9164757254", null,
                     "Data Usage since last reboot: " + bytes_usage, null, null);
 
     }
