@@ -58,11 +58,9 @@ public class UsefulNumbers extends Activity {
                 TextView phoneNumber = (TextView) view.findViewById(R.id.textView2);
                 String number = phoneNumber.getText().toString();
 
-                Toast.makeText(getApplicationContext(), "Position :" + itemPosition + "  ListItem : " + number, Toast.LENGTH_SHORT).show();
-
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(number));
-                startActivity(callIntent);
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:" + number));
+                    startActivity(callIntent);
 
             }
         });
