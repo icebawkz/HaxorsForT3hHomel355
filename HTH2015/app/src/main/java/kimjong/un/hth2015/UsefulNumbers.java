@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -52,9 +53,10 @@ public class UsefulNumbers extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemPosition = position;
-                String itemValue = (String) list.getItemAtPosition(position);
+                TextView phoneNumber = (TextView) view.findViewById(R.id.textView2);
+                String number = phoneNumber.toString();
 
-                Toast.makeText(getApplicationContext(), "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Position :" + itemPosition + "  ListItem : " + number, Toast.LENGTH_SHORT).show();
             }
         });
 
