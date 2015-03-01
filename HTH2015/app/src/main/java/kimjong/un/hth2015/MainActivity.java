@@ -80,20 +80,9 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void sendText(){
-
-        Object[] messages=(Object[])Bundle.get("pdus");
-        SmsMessage[] sms=new SmsMessage[messages.length];
-
         long bytes_usage = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
-
-        for(int n=0;n<messages.length;n++){
-            sms[n]=SmsMessage.createFromPdu((byte[]) messages[n]);
-        }
-
-        for(SmsMessage msg:sms){
-            smsManager.sendTextMessage(getMy10DigitPhoneNumber(), null,
+        smsManager.sendTextMessage(getMy10DigitPhoneNumber(), null,
                     "Data Usage since last reboot: " + bytes_usage, null, null);
-        }
 
     }
 
