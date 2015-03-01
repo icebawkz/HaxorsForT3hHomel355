@@ -1,6 +1,8 @@
 package kimjong.un.hth2015;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.internal.widget.AdapterViewCompat;
@@ -54,9 +56,14 @@ public class UsefulNumbers extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int itemPosition = position;
                 TextView phoneNumber = (TextView) view.findViewById(R.id.textView2);
-                String number = phoneNumber.toString();
+                String number = phoneNumber.getText().toString();
 
                 Toast.makeText(getApplicationContext(), "Position :" + itemPosition + "  ListItem : " + number, Toast.LENGTH_SHORT).show();
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(number));
+                startActivity(callIntent);
+
             }
         });
 
