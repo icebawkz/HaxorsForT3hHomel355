@@ -3,8 +3,10 @@ package kimjong.un.hth2015;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.media.Image;
+import android.net.TrafficStats;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.telephony.SmsMessage;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void sendText(){
 
-        Object[] messages=(Object[])bundle.get("pdus");
+        Object[] messages=(Object[])Bundle.get("pdus");
         SmsMessage[] sms=new SmsMessage[messages.length];
 
         long bytes_usage = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
