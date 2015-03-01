@@ -56,16 +56,16 @@ public class PhonebookAdapter extends BaseAdapter implements View.OnClickListene
         tvPhone.setText(entry.getPhone());
 
         // Set the onClick Listener on this button
-        Button btnRemove = (Button) convertView.findViewById(R.id.button5);
-        btnRemove.setFocusableInTouchMode(false);
-        btnRemove.setFocusable(false);
-        btnRemove.setOnClickListener(this);
+//        Button btnRemove = (Button) convertView.findViewById(R.id.button5);
+//        btnRemove.setFocusableInTouchMode(false);
+//        btnRemove.setFocusable(false);
+//        btnRemove.setOnClickListener(this);
         // Set the entry, so that you can capture which item was clicked and
         // then remove it
         // As an alternative, you can use the id/position of the item to capture
         // the item
         // that was clicked.
-        btnRemove.setTag(entry);
+     //   btnRemove.setTag(entry);
 
         // btnRemove.setId(position);
 
@@ -82,7 +82,7 @@ public class PhonebookAdapter extends BaseAdapter implements View.OnClickListene
     }
 
     private void showDialog(Phonebook entry){
-        
+        //nothig so far
     }
 
 }

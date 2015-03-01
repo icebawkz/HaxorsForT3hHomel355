@@ -23,8 +23,18 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WebApp.class);
-                intent.putExtra("website", "http://pranavbheda.github.io/hth2015.html");
+                intent.putExtra("website", "http://pranavbheda.github.io/HTH2015/index.html");
                 startActivity(intent);
+            }
+        });
+
+        Button topright = (Button) findViewById(R.id.button2);
+        topright.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tutorialintent = new Intent(MainActivity.this, WebApp.class);
+                tutorialintent.putExtra("website", "https://www.youtube.com/watch?v=uaz8A9Bu-pA");
+                startActivity(tutorialintent);
             }
         });
 
