@@ -34,24 +34,16 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
-<<<<<<< HEAD
-        sharedpreferences = getSharedPreferences(HITH_PREFERENCES, Context.MODE_PRIVATE);
-
-
-        if (sharedpreferences.contains)
-=======
-
         sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
 
-        if (sharedpreferences.contains("Phone_No"))
+        if (sharedpreferences.contains("Phone_No")){
             phone_number = sharedpreferences.getString("Phone_No", "");
-
+            Log.v("SharedPreferences", "Phone Number" + phone_number);
+        }
 
         if (sharedpreferences.contains("FirstLaunch"))
             first_launch = false;
 
-
->>>>>>> origin/master
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,12 +94,14 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void sendText(){
-        firstLaunch();
-        long bytes_usage = TrafficStats.getTotalRxBytes();
-        Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
-        smsManager.sendTextMessage("9164757254", null,
-                    "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
-
+        if (first_launch)
+            firstLaunch();
+        else{
+            long bytes_usage = TrafficStats.getTotalRxBytes();
+            Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
+            smsManager.sendTextMessage("9164757254", null,
+                        "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
+        }
     }
 
     @Override
@@ -134,16 +128,10 @@ public class MainActivity extends ActionBarActivity {
 
     private void firstLaunch(){
 
-<<<<<<< HEAD
         Editor editor = sharedpreferences.edit();
-=======
 
         //SharedPreferences.Editor editor = sharedpreferences.edit();
-
-
         SharedPreferences.Editor editor = sharedpreferences.edit();
->>>>>>> origin/master
-
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setMessage("Enter your phone number");
@@ -155,12 +143,9 @@ public class MainActivity extends ActionBarActivity {
         alert.setNegativeButton("Cancel", null);
         alert.show();
 
-<<<<<<< HEAD
-=======
         editor.putString("Phone_No", phone_number);
         editor.putBoolean("FirstLaunch", false);
         editor.commit();
-
->>>>>>> origin/master
+        first_launch = false;
     }
 }
