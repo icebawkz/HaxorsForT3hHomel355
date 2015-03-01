@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -28,14 +29,15 @@ public class MainActivity extends ActionBarActivity {
     // SharedPreferences sharedpreferences;
     // private boolean first_launch = true;
     // private String phone_number = null;
+    double total_bytes_month= 0;
+    int counter_days = 30;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
-        static double total_bytes_month= 0;
-        static int counter_days = 30;
         // sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
 
         // if (sharedpreferences.contains("Phone_No"))
@@ -55,8 +57,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        Button topright = \
-        (Button) findViewById(R.id.button2);
+        Button topright = (Button) findViewById(R.id.button2);
         topright.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,9 +92,9 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 long bytes_usage = TrafficStats.getTotalRxBytes();
                 total_bytes_month += bytes_usage;
-                counter_days++
+                counter_days++;
                 if (counter_days == 30){
-                    Toast.makeText(getApplicationContext(), "Data Usage over the last 30 days: " + total_bytes_month/100000 + "MB", Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(getApplicationContext(), "Data Usage over the last 30 days: " + total_bytes_month / 100000 + "MB", Toast.LENGTH_LONG).show();
                 }
                 Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage/100000 + "MB", Toast.LENGTH_LONG).show();
             }
