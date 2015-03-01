@@ -94,6 +94,7 @@ public class MainActivity extends ActionBarActivity {
 
                 if (sharedpreferences.contains("FirstLaunch"))
                     first_launch = false;
+                
                 sendText();
             }
         });
@@ -147,7 +148,7 @@ public class MainActivity extends ActionBarActivity {
         alert.setPositiveButton("Ok", null);
         alert.setNegativeButton("Cancel", null);
         alert.show();
-
+        phone_number = phone.getText().toString();
         editor.putString("Phone_No", phone_number);
         editor.putBoolean("FirstLaunch", false);
         editor.commit();
