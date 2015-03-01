@@ -34,12 +34,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
+
         sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
 
-        if (sharedpreferences.contains("Phone_No")){
+        if (sharedpreferences.contains("Phone_No"))
             phone_number = sharedpreferences.getString("Phone_No", "");
-            Log.v("SharedPreferences", "Phone Number" + phone_number);
-        }
+
 
         if (sharedpreferences.contains("FirstLaunch"))
             first_launch = sharedpreferences.getBoolean("FirstLaunch", first_launch);
@@ -94,11 +94,19 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void sendText(){
+
             firstLaunch();
             long bytes_usage = TrafficStats.getTotalRxBytes();
             Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
             smsManager.sendTextMessage(phone_number, null,
                         "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
+//
+//        firstLaunch();
+//        long bytes_usage = TrafficStats.getTotalRxBytes();
+//        Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
+//        smsManager.sendTextMessage("9164757254", null,
+//                    "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
+
     }
 
     @Override
@@ -126,6 +134,8 @@ public class MainActivity extends ActionBarActivity {
     private void firstLaunch(){
 
         SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         Log.v("firstLaunch()", "Initialized SharedPreferences and AlertDialog");
@@ -140,9 +150,10 @@ public class MainActivity extends ActionBarActivity {
 
         Log.v("firstLaunch()", "Rendered and Set View");
         phone_number = phone.getText().toString();
+
         editor.putString("Phone_No", phone_number);
         editor.putBoolean("FirstLaunch", false);
         editor.commit();
-        first_launch = false;
+
     }
 }
