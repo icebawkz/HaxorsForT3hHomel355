@@ -47,13 +47,13 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        Button data = (Button) findViewById(R.id.data);
-        data.setOnClickListener(new View.OnClickListener()){
+        Button data = (Button) findViewById(R.id.data_usage);
+        data.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS), 0);
+                startActivity(new Intent (android.provider.Settings.ACTION_WIRELESS_SETTINGS));
             }
-        }
+        });
     }
 
 
