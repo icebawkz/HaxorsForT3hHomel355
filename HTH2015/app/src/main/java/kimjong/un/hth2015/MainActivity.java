@@ -87,6 +87,13 @@ public class MainActivity extends ActionBarActivity {
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (sharedpreferences.contains("Phone_No")){
+                    phone_number = sharedpreferences.getString("Phone_No", "");
+                    Log.v("SharedPreferences", "Phone Number" + phone_number);
+                }
+
+                if (sharedpreferences.contains("FirstLaunch"))
+                    first_launch = false;
                 sendText();
             }
         });
@@ -99,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
         else{
             long bytes_usage = TrafficStats.getTotalRxBytes();
             Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
-            smsManager.sendTextMessage("9164757254", null,
+            smsManager.sendTextMessage(phone_number, null,
                         "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
         }
     }
