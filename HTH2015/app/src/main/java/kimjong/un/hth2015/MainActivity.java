@@ -2,6 +2,7 @@ package kimjong.un.hth2015;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
 
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
@@ -57,16 +60,21 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        Button data = (Button) findViewById(R.id.data);
-        data.setOnClickListener(new View.OnClickListener()){
+        Button data = (Button) findViewById(R.id.data_usage);
+        data.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
+
                 data_tutorial.setVisibility(View.VISIBLE);
-                Thread.sleep(5000);
-                startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 data_tutorial.setVisibility(View.GONE);
             }
-        }
+        });
     }
 
 
