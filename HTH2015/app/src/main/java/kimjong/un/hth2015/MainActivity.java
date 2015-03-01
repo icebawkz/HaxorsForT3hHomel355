@@ -26,8 +26,8 @@ public class MainActivity extends ActionBarActivity {
 
     SmsManager smsManager = SmsManager.getDefault();
     SharedPreferences sharedpreferences;
-    private boolean first_launch;
-
+    private boolean first_launch = true;
+    private String phone_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,10 +128,8 @@ public class MainActivity extends ActionBarActivity {
 
     private void firstLaunch(){
 
-        Editor editor = sharedpreferences.edit();
-
-        //SharedPreferences.Editor editor = sharedpreferences.edit();
         SharedPreferences.Editor editor = sharedpreferences.edit();
+
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setMessage("Enter your phone number");
