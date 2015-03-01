@@ -1,8 +1,10 @@
 package kimjong.un.hth2015;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.net.TrafficStats;
 import android.support.v7.app.ActionBarActivity;
@@ -10,11 +12,13 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
@@ -30,10 +34,24 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
+<<<<<<< HEAD
         sharedpreferences = getSharedPreferences(HITH_PREFERENCES, Context.MODE_PRIVATE);
 
 
         if (sharedpreferences.contains)
+=======
+
+        sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
+
+        if (sharedpreferences.contains("Phone_No"))
+            phone_number = sharedpreferences.getString("Phone_No", "");
+
+
+        if (sharedpreferences.contains("FirstLaunch"))
+            first_launch = false;
+
+
+>>>>>>> origin/master
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent logointent = new Intent(MainActivity.this, WebApp.class);
-                logointent.putExtra("website", "http://hackforthehomeless.com");
+                logointent.putExtra("website", "http://acm.engr.scu.edu/h4h/index.html");
                 startActivity(logointent);
             }
         });
@@ -116,7 +134,15 @@ public class MainActivity extends ActionBarActivity {
 
     private void firstLaunch(){
 
+<<<<<<< HEAD
         Editor editor = sharedpreferences.edit();
+=======
+
+        //SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+>>>>>>> origin/master
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
@@ -129,5 +155,12 @@ public class MainActivity extends ActionBarActivity {
         alert.setNegativeButton("Cancel", null);
         alert.show();
 
+<<<<<<< HEAD
+=======
+        editor.putString("Phone_No", phone_number);
+        editor.putBoolean("FirstLaunch", false);
+        editor.commit();
+
+>>>>>>> origin/master
     }
 }
