@@ -21,13 +21,19 @@ import android.widget.ImageView;
 public class MainActivity extends ActionBarActivity {
 
     SmsManager smsManager = SmsManager.getDefault();
+    SharedPreferences sharedpreferences;
+    private boolean first_launch;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
+        sharedpreferences = getSharedPreferences(HITH_PREFERENCES, Context.MODE_PRIVATE);
 
+
+        if (sharedpreferences.contains)
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,19 +78,17 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 sendText();
-                // data_tutorial.setVisibility(View.VISIBLE);
-                // startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
-                // data_tutorial.setVisibility(View.GONE);
             }
         });
     }
 
 
     public void sendText(){
+        firstLaunch();
         long bytes_usage = TrafficStats.getTotalRxBytes();
         Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
         smsManager.sendTextMessage("9164757254", null,
-                    "Data Usage since last reboot: " + bytes_usage, null, null);
+                    "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
 
     }
 
@@ -110,14 +114,20 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private String getMyPhoneNumber(){
-        TelephonyManager mTelephonyMgr;
-        mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        return mTelephonyMgr.getLine1Number();
-    }
+    private void firstLaunch(){
 
-    private String getMy10DigitPhoneNumber(){
-        String s = getMyPhoneNumber();
-        return s.substring(2);
+        Editor editor = sharedpreferences.edit();
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setMessage("Enter your phone number");
+        final EditText phone = new EditText(this);
+        phone.setInputType(InputType.TYPE_CLASS_PHONE);
+        phone.setHint("10 Digit Phone Number");
+        alert.setView(phone);
+        alert.setPositiveButton("Ok", null);
+        alert.setNegativeButton("Cancel", null);
+        alert.show();
+
     }
 }
