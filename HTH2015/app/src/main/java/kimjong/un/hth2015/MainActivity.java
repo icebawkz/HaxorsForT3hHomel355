@@ -24,10 +24,10 @@ import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
 
-    SmsManager smsManager = SmsManager.getDefault();
-    SharedPreferences sharedpreferences;
-    private boolean first_launch = true;
-    private String phone_number = null;
+    // SmsManager smsManager = SmsManager.getDefault();
+    // SharedPreferences sharedpreferences;
+    // private boolean first_launch = true;
+    // private String phone_number = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
 
-        sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
+        // sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
 
-        if (sharedpreferences.contains("Phone_No"))
-            phone_number = sharedpreferences.getString("Phone_No", "");
+        // if (sharedpreferences.contains("Phone_No"))
+        //     phone_number = sharedpreferences.getString("Phone_No", "");
 
 
-        if (sharedpreferences.contains("FirstLaunch"))
-            first_launch = sharedpreferences.getBoolean("FirstLaunch", first_launch);
+        // if (sharedpreferences.contains("FirstLaunch"))
+        //     first_launch = sharedpreferences.getBoolean("FirstLaunch", first_launch);
 
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
@@ -87,26 +87,10 @@ public class MainActivity extends ActionBarActivity {
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendText();
+                long bytes_usage = TrafficStats.getTotalRxBytes();
+                Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage/100000 + "MB", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-
-    public void sendText(){
-
-            firstLaunch();
-            long bytes_usage = TrafficStats.getTotalRxBytes();
-            Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
-            smsManager.sendTextMessage(phone_number, null,
-                        "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
-//
-//        firstLaunch();
-//        long bytes_usage = TrafficStats.getTotalRxBytes();
-//        Log.v("sendText()", TrafficStats.getTotalTxBytes() + " " + TrafficStats.getTotalRxBytes());
-//        smsManager.sendTextMessage("9164757254", null,
-//                    "Data Usage since last reboot: " + bytes_usage/100000 + "MB", null, null);
-
     }
 
     @Override
@@ -129,31 +113,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void firstLaunch(){
-
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        Log.v("firstLaunch()", "Initialized SharedPreferences and AlertDialog");
-        alert.setMessage("Enter your phone number");
-        final EditText phone = new EditText(this);
-        phone.setInputType(InputType.TYPE_CLASS_PHONE);
-        phone.setHint("10 Digit Phone Number");
-        alert.setView(phone);
-        alert.setPositiveButton("Ok", null);
-        alert.setNegativeButton("Cancel", null);
-        alert.show();
-
-        Log.v("firstLaunch()", "Rendered and Set View");
-        phone_number = phone.getText().toString();
-
-        editor.putString("Phone_No", phone_number);
-        editor.putBoolean("FirstLaunch", false);
-        editor.commit();
-
     }
 }
