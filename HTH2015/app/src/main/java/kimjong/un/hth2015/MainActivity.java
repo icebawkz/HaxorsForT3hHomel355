@@ -1,12 +1,15 @@
 package kimjong.un.hth2015;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.net.TrafficStats;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends ActionBarActivity {
 
+    SmsManager smsManager = SmsManager.getDefault();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         for(SmsMessage msg:sms){
-            smsManager.sendTextMessage(getMy10DigitPhoneNumber, null, 
+            smsManager.sendTextMessage(getMy10DigitPhoneNumber(), null,
                     "Data Usage since last reboot: " + bytes_usage, null, null);
         }
 
@@ -117,7 +121,7 @@ public class MainActivity extends ActionBarActivity {
 
     private String getMyPhoneNumber(){
         TelephonyManager mTelephonyMgr;
-        mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); 
+        mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         return mTelephonyMgr.getLine1Number();
     }
 
