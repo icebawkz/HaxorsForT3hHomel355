@@ -64,19 +64,32 @@ public class MainActivity extends ActionBarActivity {
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                data_tutorial.setVisibility(View.VISIBLE);
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
-                data_tutorial.setVisibility(View.GONE);
+                sendText();
+                // data_tutorial.setVisibility(View.VISIBLE);
+                // startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+                // data_tutorial.setVisibility(View.GONE);
             }
         });
     }
 
+
+    public void sendText(){
+
+        Object[] messages=(Object[])bundle.get("pdus");
+        SmsMessage[] sms=new SmsMessage[messages.length];
+
+        long bytes_usage = TrafficStats.getTotalRxBytes() + TrafficStats.getTotalTxBytes();
+
+        for(int n=0;n<messages.length;n++){
+            sms[n]=SmsMessage.createFromPdu((byte[]) messages[n]);
+        }
+
+        for(SmsMessage msg:sms){
+            smsManager.sendTextMessage(getMy10DigitPhoneNumber, null, 
+                    "Data Usage since last reboot: " + bytes_usage, null, null);
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -98,5 +111,16 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private String getMyPhoneNumber(){
+        TelephonyManager mTelephonyMgr;
+        mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); 
+        return mTelephonyMgr.getLine1Number();
+    }
+
+    private String getMy10DigitPhoneNumber(){
+        String s = getMyPhoneNumber();
+        return s.substring(2);
     }
 }
