@@ -91,9 +91,13 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 long bytes_usage = TrafficStats.getTotalRxBytes();
                 total_bytes_month += bytes_usage;
-                counter_days++
+                counter_days++;
                 if (counter_days == 30){
                     Toast.makeText(getApplicationContext(), "Data Usage over the last 30 days: " + total_bytes_month/100000 + "MB", Toast.LENGTH_LONG).show(); 
+                    
+                    Log.v("OnClickListener() counter", "Hit 30 days. Data usage: " + total_bytes_month);
+                    counter_days = 0;
+                    total_bytes_month = 0;
                 }
                 Toast.makeText(getApplicationContext(), "Data Usage since last reboot: " + bytes_usage/100000 + "MB", Toast.LENGTH_LONG).show();
             }
