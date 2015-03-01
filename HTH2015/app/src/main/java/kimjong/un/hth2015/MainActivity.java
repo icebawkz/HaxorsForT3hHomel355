@@ -36,14 +36,6 @@ public class MainActivity extends ActionBarActivity {
         final ImageView data_tutorial = (ImageView)findViewById(R.id.settings_screenshot);
         sharedpreferences = getApplicationContext().getSharedPreferences("HITH_PREFERENCES", Context.MODE_PRIVATE);
 
-        if (sharedpreferences.contains("Phone_No")){
-            phone_number = sharedpreferences.getString("Phone_No", "");
-            Log.v("SharedPreferences", "Phone Number" + phone_number);
-        }
-
-        if (sharedpreferences.contains("FirstLaunch"))
-            first_launch = false;
-
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
 
                 if (sharedpreferences.contains("FirstLaunch"))
                     first_launch = false;
-                
+
                 sendText();
             }
         });
@@ -137,10 +129,12 @@ public class MainActivity extends ActionBarActivity {
     private void firstLaunch(){
 
         SharedPreferences.Editor editor = sharedpreferences.edit();
-
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
+        Log.v("firstLaunch()", "Initialized SharedPreferences and AlertDialog");
         alert.setMessage("Enter your phone number");
+
+
         final EditText phone = new EditText(this);
         phone.setInputType(InputType.TYPE_CLASS_PHONE);
         phone.setHint("10 Digit Phone Number");
@@ -148,6 +142,8 @@ public class MainActivity extends ActionBarActivity {
         alert.setPositiveButton("Ok", null);
         alert.setNegativeButton("Cancel", null);
         alert.show();
+
+        Log.v("firstLaunch()", "Rendered and Set View");
         phone_number = phone.getText().toString();
         editor.putString("Phone_No", phone_number);
         editor.putBoolean("FirstLaunch", false);
