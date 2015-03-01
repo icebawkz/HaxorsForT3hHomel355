@@ -28,8 +28,7 @@
 
         <activity android:name=".UsefulNumbers">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                    <category android:name="android.intent.action.CALL"/>
+                <action android:name="android.intent.action.CALL"/>
             </intent-filter>
 
         </activity>
