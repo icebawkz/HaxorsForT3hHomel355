@@ -85,7 +85,7 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 if (sharedpreferences.contains("FirstLaunch"))
-                    first_launch = false;
+                    first_launch = sharedpreferences.getBoolean("FirstLaunch", "");
 
                 sendText();
             }
@@ -94,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void sendText(){
-        if (first_launch)
+        if (first_launch == true)
             firstLaunch();
         else{
             long bytes_usage = TrafficStats.getTotalRxBytes();
