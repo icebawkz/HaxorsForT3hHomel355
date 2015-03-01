@@ -18,7 +18,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageView data_tutorial = (ImageView) (findViewById(R.id.settings_screenshot));
-        data_tutorial.setVisibility(INVISIBLE);
         data_tutorial.setClickable(false);
         Button topleft =  (Button) (findViewById(R.id.button));
         topleft.setOnClickListener(new View.OnClickListener() {
@@ -53,9 +52,10 @@ public class MainActivity extends ActionBarActivity {
         data.setOnClickListener(new View.OnClickListener()){
             @Override
             public void onClick(View v){
-                data_tutorial.setVisibility(VISIBLE);
-                data_tutorial.setClickable(true);
+                data_tutorial.setVisibility(View.VISIBLE);
+                Thread.sleep(5000);
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                data_tutorial.setVisibility(View.INVISIBLE);
             }
         }
     }
