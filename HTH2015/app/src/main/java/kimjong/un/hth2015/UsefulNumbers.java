@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.internal.widget.AdapterViewCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +25,7 @@ public class UsefulNumbers extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        ListView list = (ListView) findViewById(R.id.listView);
+        final ListView list = (ListView) findViewById(R.id.listView);
         list.setClickable(true);
 
         final List<Phonebook> listOfPhonebook = new ArrayList<Phonebook>();
@@ -47,7 +51,27 @@ public class UsefulNumbers extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int itemPosition = position;
+                String itemValue = (String) list.getItemAtPosition(position);
 
+                Toast.makeText(getApplicationContext(), "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Button addbtn = (Button) findViewById(R.id.addbtn);
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText textname = (EditText) findViewById(R.id.editname);
+                String name = textname.getText().toString();
+
+                EditText textnumber = (EditText) findViewById(R.id.editnumber);
+                String number = textnumber.getText().toString();
+
+                listOfPhonebook.add(new Phonebook(name, number));
+
+                textname.setText("");
+                textnumber.setText("");
             }
         });
 

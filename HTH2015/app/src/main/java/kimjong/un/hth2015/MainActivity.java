@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent tutorialintent = new Intent(MainActivity.this, WebApp.class);
-                tutorialintent.putExtra("website", "https://www.youtube.com/watch?v=uaz8A9Bu-pA");
+                tutorialintent.putExtra("website", "http://i.imgur.com//5c22RvF.gif");
                 startActivity(tutorialintent);
             }
         });
