@@ -9,7 +9,8 @@
         android:text="Large Text"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#e74c3c" />
 
     <TextView
         android:layout_width="wrap_content"

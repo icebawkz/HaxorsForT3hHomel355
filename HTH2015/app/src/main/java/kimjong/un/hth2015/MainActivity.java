@@ -25,10 +25,6 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    // SmsManager smsManager = SmsManager.getDefault();
-    // SharedPreferences sharedpreferences;
-    // private boolean first_launch = true;
-    // private String phone_number = null;
     double total_bytes_month= 0;
     int counter_days = 29;
 
@@ -52,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent tutorialintent = new Intent(MainActivity.this, WebApp.class);
-                tutorialintent.putExtra("website", "http://i.imgur.com//5c22RvF.gif");
+                tutorialintent.putExtra("website", "https://www.youtube.com/watch?v=mD5RDFsPDTo");
                 startActivity(tutorialintent);
             }
         });
@@ -62,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent logointent = new Intent(MainActivity.this, WebApp.class);
-                logointent.putExtra("website", "http://acm.engr.scu.edu/h4h/index.html");
+                logointent.putExtra("website", "http://www.ctagroup.org");
                 startActivity(logointent);
             }
         });
